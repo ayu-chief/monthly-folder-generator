@@ -2,12 +2,14 @@ name: Monthly Folder Generator
 
 on:
   schedule:
-    - cron: '0 0 25 * *'
+    - cron: '0 0 25 * *'  # 毎月25日 0:00 に実行
   workflow_dispatch:
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    env:
+      GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}  # ← 修正ポイント！
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,6 +23,4 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
-        env:
-          SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
         run: python main.py
