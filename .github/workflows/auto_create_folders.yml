@@ -22,6 +22,6 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run script
+        run: python main.py
         env:
           GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-        run: python main.py
