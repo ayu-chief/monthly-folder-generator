@@ -8,8 +8,7 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    env:
-      GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}  # ← 修正ポイント！
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -24,3 +23,5 @@ jobs:
 
       - name: Run script
         run: python main.py
+        env:
+          GCP_SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
